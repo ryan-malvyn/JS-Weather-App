@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    background-color:var(--backgroundcolor);
+}
+
+:root{
+    --font-family:'Quicksand', sans-serif;
+    --backgroundcolor:
+
+        /* ff 3.6+ */
+        background:-moz-radial-gradient(circle at 28% 50%, rgba(0, 199, 255, 0.48) 0%, rgba(238, 130, 238, 0.73) 100%);
+    
+        /* safari 5.1+,chrome 10+ */
+        background:-webkit-radial-gradient(circle at 28% 50%, rgba(0, 199, 255, 0.48) 0%, rgba(238, 130, 238, 0.73) 100%);
+    
+        /* opera 11.10+ */
+        background:-o-radial-gradient(circle at 28% 50%, rgba(0, 199, 255, 0.48) 0%, rgba(238, 130, 238, 0.73) 100%);
+    
+        /* ie 10+ */
+        background:-ms-radial-gradient(circle at 28% 50%, rgba(0, 199, 255, 0.48) 0%, rgba(238, 130, 238, 0.73) 100%);
+    
+        /* global 92%+ browsers support */
+        background:radial-gradient(circle at 28% 50%, rgba(0, 199, 255, 0.48) 0%, rgba(238, 130, 238, 0.73) 100%);
+    
+}
+
+.container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+}
+
+.app-area{
+    min-width:576px;
+    min-height:484px;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:3rem;
+    background-color:rgba(0,0,0,0.8);
+    border-radius:5rem;
+}
+
+.input-container{
+    min-width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.inputBox{
+    outline:none;
+    border:none;
+    background-color:white;
+    color:black;
+    font-size:18px;
+    line-height: 28px;
+    padding:0.5rem 1rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.click-to-submit{
+    background-color:orangered;
+    border:none;
+    color:white;
+    font-size:18px;
+    line-height:28px;
+    outline:none;
+    padding:0.5rem 1rem;
+    border-top-right-radius:1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.output-container{
+    padding-top:2rem;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:space-between;
+    justify-content:flex-start;
+}
+
+.currentCity{
+    line-height:40px;
+}
+
+.iconArea{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    justify-self:center;
+    width:100%;
+}
+
+#iconArea{
+    width:100%;
+    height:100%;
+}
+
+.output-container h1,
+.output-container h3,
+.output-container div,
+.output-container p{
+    flex:1;
+    font-family:var(--font-family);
+    margin:1rem 0;
+    color:white;
+}
