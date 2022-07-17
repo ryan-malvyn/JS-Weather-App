@@ -6,6 +6,9 @@ const skinFeel = document.querySelector('.feelsLike');
 const city = document.querySelector('.targetCity');
 const currentCity = document.querySelector('.currentCity');
 const icon = document.querySelector('#weatherIcon');
+const imperial = document.querySelector('#fahrenheit');
+const metric = document.querySelector('#celcius');
+const radioInputs = document.querySelectorAll('input[name="metricOrImperial"]');
 
 //Fetching API Data;
 async function getWeatherdata() {
@@ -13,7 +16,12 @@ async function getWeatherdata() {
     const APILink = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=186ddcae65d8d1ffd52e6cc67277b2e8`
     const response = await fetch(`${APILink}`)
     var data = await response.json()
-    console.log(data)
+
+    //Handling API Error;
+    if(data.message == 'city not found'){
+        alert('Please enter a correct city name.')
+        userInput.value='';
+    }
 
     //Getting Icons
         //Weather Condition
@@ -60,10 +68,17 @@ async function getWeatherdata() {
 
         //Creating Link from Collected URL Data
         const openWeatherIconCode = iconCodeArr.join('')
-        console.log(openWeatherIconCode);
         const fetchIconLink = await fetch(`http://openweathermap.org/img/wn/${openWeatherIconCode}@2x.png`);
         const iconURL = fetchIconLink.url
-        console.log(iconURL);
+
+        //Looping through all radio buttons
+        let metricImperial;
+        for( const rb of radioInputs) {
+                if(rb.checked){
+                    metricImperial = rb.value;
+                    break;
+                }
+        }
 
     //Temperature Data
     const currentTemp = data.main.temp
@@ -79,13 +94,26 @@ async function getWeatherdata() {
 
     //If the city entered is all lowercase
     const displayString = cityName.charAt(0).toUpperCase() + cityName.slice(1);
-    
+
+    //Displaying Celcius or Fahrenheit
+    if(metricImperial == 'celcius'){
+        weatherOutput.innerText = `It is currently ${celciusTemp} Degrees Celcius in `
+        skinFeel.innerText = `Feels like : ${celciusFeel} Degrees Celcius in ${cityName}`
+
+    } else if (metricImperial == 'fahrenheit'){
+        weatherOutput.innerText = `It is currently ${fahrenheitTemp} Degrees Fahrenheit in `
+        skinFeel.innerText = `Feels like : ${fahrenheitFeel} Degrees Fahrenheit in ${cityName}`
+    }
+
+    //Edge Cases
+    if(userInput.value = null){
+        alert('Please type in a city!');
+    }
+
     //Updating Display
     icon.src=`${iconURL}`
     currentCity.innerText = `${displayString}`
-    weatherOutput.innerText = `It is currently ${fahrenheitTemp} Degrees Fahrenheit in `
     city.innerText = `${cityName}`
-    skinFeel.innerText = `Feels like : ${fahrenheitFeel} Degrees Fahrenheit in ${cityName}`
     userInput.value=''
 }
 
